@@ -15,6 +15,7 @@ const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
 
 const playListElement = $('.playlist');
+const fullPlayListElement = $('.full-playlist')
 const currentSongName = $('.dashboard h2');
 const currentSongSinger = $('.dashboard h5');
 const cdThumb = $('.dashboard .cd-thumb');
@@ -62,6 +63,30 @@ const app = {
             musicPath: './assets/music/TinhYeuNguQuen-HoangTonLyhan-7030537.mp3',
             image: './assets/img/tinhYeuNguQuen.jpg'
         }, 
+        {
+            name: 'Anh Đánh Rơi Người Yêu Này',
+            singer: 'AMEE ft Andiez',
+            musicPath: './assets/music/AnhDanhRoiNguoiYeuNay-Andiez-7625350.mp3',
+            image: './assets/img/anhDanhRoiNguoiYeuNay.jpg'
+        }, 
+        {
+            name: 'Ex\'s Hate Me',
+            singer: 'AMEE ft Bray',
+            musicPath: './assets/music/ExsHateMe-BRayMasewAMee-5878683.mp3',
+            image: './assets/img/exHateMe.jpg'
+        },
+        {
+            name: 'Ghé Vào Tai',
+            singer: 'UMIE FreakyHo',
+            musicPath: './assets/music/GheVaoTai-UMIEFreakyHo-8514373.mp3',
+            image: './assets/img/gheVaoTai.jpg'
+        }, 
+        {
+            name: 'Tại Ssao Lại Xinh Như Thế',
+            singer: 'Juhi',
+            musicPath: './assets/music/TaiSaoLaiXinhNhuThe-Juhi-8398166.mp3',
+            image: './assets/img/taiSaoLaiXinh.jpg'
+        }, 
     ],
 
     currentIndex: 0,
@@ -69,7 +94,7 @@ const app = {
     renderPlayList: function() {
         var htmls = this.songs.map((song, index) => {
             return `
-                <div class="song ${index == app.currentIndex ? 'active' : ''}">
+                <div class="song ${index == app.currentIndex ? 'active' : ''}" data-index="${index}">
                     <div class="song--cd-thumb" style="background-image: url(${song.image})"></div> 
 
                     <div class="song-body">
@@ -80,11 +105,13 @@ const app = {
                     <div class="option">
                         <i class="fas fa-ellipsis-h"></i>
                     </div>
+                    <img src="./assets/img/radio.png" alt="" class="playing-icon">
                 </div>
             `
         })
 
         playListElement.innerHTML = htmls.join('');
+        fullPlayListElement.innerHTML = htmls.join('');
     },
 
     defineProperties: function() {
@@ -253,20 +280,48 @@ const app = {
         }
 
         // Click to play 
-        const playList = $$('.song');
-        playList.forEach((songIndex) => {
-            app.currentIndex = songIndex;
-            changeSong();
-        });
+        playListElement.onclick = function(e) {
+            var songNode = e.target.closest('.song:not(.active)');
+            if (songNode || !e.target.closest('.options')){
+                if(songNode) {
+                    app.currentIndex = songNode.dataset.index;
+                    changeSong();
+                }
+            }
+        }
+
+        fullPlayListElement.onclick = function(e) {
+            var songNode = e.target.closest('.song:not(.active)');
+            if (songNode || !e.target.closest('.options')){
+                if(songNode) {
+                    app.currentIndex = songNode.dataset.index;
+                    changeSong();
+                }
+            }
+        }
+
+        // Open full playlist
+
+        const menuIcon = $('.player-header > i');
+        menuIcon.onclick = function() {
+            $('.full-playlist').classList.toggle('open');
+        }
     },
 
     scrollActiveSong: function() {
         setTimeout(() => {
-            $('.song.active').scrollIntoView({
+            $('.playlist > .song.active').scrollIntoView({
                 behavior: 'smooth',
                 block: 'center'
             })
-        }, 300)
+        }, 200)
+
+        setTimeout(() => {
+            $('.full-playlist > .song.active').scrollIntoView({
+                behavior: 'smooth',
+                block: 'center'
+            })
+        }, 200)
     },
 
     start: function() { 
