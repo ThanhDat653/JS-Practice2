@@ -1,0 +1,251 @@
+:root {
+    --primary-color: #4199FD;
+    --text-color: #333;
+    --white-color: #fff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box !important;
+}
+
+html {
+    font-family: "Poppins", sans-serif;
+    font-size: 62.5%;
+}
+
+.app {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: url(../img/backgound1.jpg) no-repeat center fixed;
+    background-size: cover;
+    color: var(--text-color);
+}
+
+.player {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: fit-content;
+    width: 40rem;
+    background-color: transparent;
+    border-radius: 5px;
+}
+
+.player-header, .dashboard {
+    box-shadow: rgb(0 0 0 / 50%) 0px 2px 10px;
+}
+
+.player-header {
+    height: 6rem;
+    width: 100%;
+    background-color: #2b82e7;
+}
+
+.dashboard {
+    width: 40rem;
+    background-color: var(--white-color);
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.line {
+    height: 10px;
+    width: 100%;
+    background-color: transparent;
+}
+
+.dashboard > header {
+    font-size: 1.4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.dashboard h5 {
+    opacity: .8;
+}
+
+.cd {
+    display: flex;
+    justify-content: center;
+    height: fit-content;
+    width: 100%;
+}
+
+.cd-thumb {
+    height: 180px;
+    width: 180px;
+    margin-bottom: 20px;
+    background-color: #333;
+    border-radius: 50%;
+    background-size: contain;
+    background-position: center;
+}
+
+.control {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 50px;
+}
+
+.control .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    opacity: .6;
+}
+
+.control .btn:hover {
+    opacity: 1;
+    scale: 1.2;
+    transition: all .2s ease-in-out;
+}
+
+.control > .repeat {
+    opacity: 1;
+    color: #2269ba;
+}
+
+.player.playing .icon-pause {
+    display: block;
+}
+
+.player.playing .icon-play {
+    display: none;
+}
+
+.btn-toggle-play > .icon-pause {
+    display: none;
+}
+
+.btn-toggle-play > .icon-play {
+    display: block;
+}   
+
+.btn-toggle-play >.fas.active {
+    display: block;
+}
+
+.progress {
+    height: 8px;
+    width: 360px;
+    margin: 20px 20px 10px;
+    background-color: #d0e6ff;
+    outline: none;  
+    appearance: none;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.progress::-webkit-slider-thumb {
+    width: 10px;
+    height: 10px;
+    appearance: none;
+    background-color: var(--primary-color);
+    cursor: pointer;
+    border-radius: 50%;
+    box-shadow: -20rem 5rem 10rem 20rem var(--primary-color);
+    z-index: 1;
+}
+
+.time_progress {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 20px 15px 20px;
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    text-shadow: #777 0.3px 0.3px 0.5px;
+}
+
+.playlist {
+    height: 171px;
+    width: 100%;
+    /* padding: 0 10px; */
+    overflow: overlay;
+    background-color: transparent;
+    border-radius: 5px;
+}
+
+
+.playlist::-webkit-scrollbar {
+    width: 10px;
+}
+  
+/* Track */
+.playlist::-webkit-scrollbar-track {
+    background: #ddd; 
+}
+
+/* Handle */
+.playlist::-webkit-scrollbar-thumb {
+    background: #aaa; 
+}
+
+/* Handle on hover */
+.playlist::-webkit-scrollbar-thumb:hover {
+    background: #a1a1a1; 
+}
+
+.song {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 3px 12px 0 0;  
+    padding: 7px 15px;
+    border-radius: 4px;
+    /* box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, 
+                rgba(0, 0, 0, 0.06) 0px 0px 0px 1px; */
+    background-color: var(--white-color);
+    color: var(--text-color);
+}
+
+.song.active {
+    background-color: #2269ba;
+    color: var(--white-color);
+}
+
+.song--cd-thumb {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background-color: aqua;
+    background-size: contain;
+    background-position: center;
+}
+
+.song-body {
+    flex: 1;
+    margin-left: 20px;
+}
+
+.song-name {
+    font-size: 1.4rem;
+}
+
+.song-singer {
+    font-size: 1.2rem;
+    opacity: .9;
+}
+
+.option {
+    margin-right: 20px;
+}
+
+.option > i {
+    font-size: 1.3rem;
+    opacity: .5;
+}
